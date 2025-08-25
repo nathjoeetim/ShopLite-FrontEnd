@@ -21,7 +21,7 @@ It demonstrates authentication, protected routes, product browsing, cart managem
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/shoplite.git
+git clone https://github.com/nathjoeetim/ShopLite-FrontEnd.git
 cd shoplite
 
 ```
