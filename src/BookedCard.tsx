@@ -1,35 +1,35 @@
 import { Link } from "react-router-dom";
 
-interface BookedCardProps {
+interface BookCardProps {
   id: number;
   title: string;
   price: number;
   images: string[];
 }
 
-const BookCard = ({ id, title, images, price }: BookedCardProps) => {
+const BookCard = ({ id, title, images, price }: BookCardProps) => {
   return (
-    <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
-      <Link to={`/product/${id}`} className="block relative">
+    <div className="flex flex-col bg-white rounded-2xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
+      <Link to={`/product/${id}`} className="relative block">
         <img
           src={images[0]}
           alt={title}
-          className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+          className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
         />
       </Link>
 
-      <div className="p-4 flex flex-col flex-1">
+      <div className="flex flex-col flex-1 p-4">
         <Link to={`/product/${id}`}>
-          <h3 className="font-semibold text-lg text-gray-800 line-clamp-2 hover:text-[#539165] transition-colors">
+          <h3 className="text-lg font-semibold text-gray-800 line-clamp-2 transition-colors hover:text-[#539165]">
             {title}
           </h3>
         </Link>
 
-        <div className="flex justify-between items-center mt-3">
-          <span className="text-[#539165] font-bold text-xl">${price}</span>
+        <div className="flex items-center justify-between mt-3">
+          <span className="text-xl font-bold text-[#539165]">${price}</span>
           <Link
             to={`/product/${id}`}
-            className="text-sm bg-[#539165] text-white px-3 py-1.5 rounded-lg hover:bg-[#437a50] transition-colors"
+            className="px-3 py-1.5 text-sm text-white bg-[#539165] rounded-lg transition-colors hover:bg-[#437a50]"
           >
             View
           </Link>

@@ -41,7 +41,12 @@ function MainContent() {
 
   useEffect(() => {
     contentRef.current?.scrollTo({ top: 0, behavior: "smooth" });
-  }, [selectedCategory]);
+  }, [selectedCategory, keyword, searchQuery, currentPage, filter]);
+
+  // reset to page 1 whenever filter changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [keyword, minPrice, maxPrice, searchQuery, selectedCategory, filter]);
 
   useEffect(() => {
     let url = `https://dummyjson.com/products?limit=${itemPerPage}&skip=${
@@ -63,19 +68,25 @@ function MainContent() {
 
         if (minPrice !== undefined) {
           fetchedProducts = fetchedProducts.filter(p => p.price >= minPrice);
+
+          setCurrentPage(1); // Reset to first page on price filter change
         }
         if (maxPrice !== undefined) {
           fetchedProducts = fetchedProducts.filter(p => p.price <= maxPrice);
+
+          setCurrentPage(1); // Reset to first page on price filter change
         }
         if (searchQuery) {
           fetchedProducts = fetchedProducts.filter(p =>
             p.title.toLowerCase().includes(searchQuery.toLowerCase())
           );
+          setCurrentPage(1); // Reset to first page on search
         }
         if (selectedCategory) {
           fetchedProducts = fetchedProducts.filter(
             p => p.category === selectedCategory
           );
+          setCurrentPage(1); // Reset to first page on category change
         }
 
         if (filter === "Cheap") {
@@ -126,6 +137,19 @@ function MainContent() {
     return buttons;
   };
 
+  if (products.length === 0 && !loading && !error) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full text-center p-4">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+          No Products Found
+        </h2>
+        <p className="text-gray-600">
+          Try adjusting your filters or search criteria.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <section
       ref={contentRef}
@@ -166,7 +190,7 @@ function MainContent() {
         {/* Loading & Error */}
         {loading && (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-6">
-            {Array.from({ length: 8 }).map((_, i) => (
+            {Array.from({ length: 10 }).map((_, i) => (
               <div
                 key={i}
                 className="w-full h-48 bg-gray-200 animate-pulse rounded-lg"

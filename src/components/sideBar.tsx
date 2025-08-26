@@ -93,9 +93,9 @@ const SideBar: React.FC = () => {
         {isOpen ? <X size={10} /> : <Menu size={10} />}
       </button>
 
-      {/* 📂 Sidebar */}
+      {/*  Sidebar */}
       <aside
-        className={`fixed md:static top-0 left-0 h-full w-72 bg-white shadow-md border-r border-gray-200 overflow-y-scroll flex flex-col  p-2 transition-transform transform md:translate-x-0 z-40
+        className={`fixed md:static top-0 left-0 h-full w-64 bg-white shadow-md border-r border-gray-200 overflow-y-scroll flex flex-col  p-2 transition-transform transform md:translate-x-0 z-40
         ${isOpen ? "translate-x-0" : "-translate-x-full"} md:block`}
       >
         <div className=" flex items-center justify-between text-4xl font-extrabold mb-8 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent ml-10 ">
