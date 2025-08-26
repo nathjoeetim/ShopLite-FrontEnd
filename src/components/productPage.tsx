@@ -104,7 +104,7 @@ export const ProductPage = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="flex justify-between items-center px-6 py-4 bg-indigo-600 text-white shadow-md">
-        <span className=" sm:ml-7 font-extrabold text-2xl tracking-wide">
+        <span className=" sm:ml-7 font-extrabold text-[15px] ml-7 tracking-wide">
           {product.brand} ( {product.category} )
         </span>
         <Link
